@@ -1,7 +1,0 @@
-<resources>
-    <string name="app_name">SuiCoffeeMachineApp</string>
-    <string name="coffee_cost">0.1</string>
-    <string name="coffee_coin">SUI </string>
-    <string name="make_espresso">MAKE ESPRESSO</string>
-    <string name="make_lungo">MAKE LUNGO</string>
-</resources>

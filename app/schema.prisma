@@ -1,0 +1,30 @@
+generator client {
+  provider = "prisma-client-js"
+}
+ 
+datasource db {
+  provider = "postgresql"
+  // Uses connection pooling
+  url = env("POSTGRES_PRISMA_URL")
+  // Uses direct connection, ⚠️ make sure to keep this to `POSTGRES_URL_NON_POOLING`
+  // or you'll have dangling databases from migrations
+  directUrl = env("POSTGRES_URL_NON_POOLING")
+}
+ 
+model MainnetNFT {
+  id        String      @id
+  createdAt DateTime @default(now()) 
+  votes     Int      @default(0)
+
+  @@index([votes(desc), createdAt(desc)])
+  @@index([createdAt(desc), votes(desc)])
+}
+
+model TestnetNFT {
+  id        String      @id
+  createdAt DateTime @default(now()) 
+  votes     Int      @default(0)
+
+  @@index([votes(desc), createdAt(desc)])
+  @@index([createdAt(desc), votes(desc)])
+}

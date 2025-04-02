@@ -1,4 +1,4 @@
-import { z } from "zod";
+import {z} from "zod";
 import 'dotenv/config';
 
 /*
@@ -11,11 +11,17 @@ import 'dotenv/config';
  */
 
 const serverConfigSchema = z.object({
-  TESTING_MODE: z.boolean().default(false)
+    TESTING_MODE: z.boolean().default(false),
+    CRON_SECRET: z.string(),
+    WAL_AIRDROP_PACKAGE: z.string(),
+    ADMIN_SECRET_KEY: z.string(),
 });
 
 const serverConfig = serverConfigSchema.parse({
-  TESTING_MODE:                 process.env.VERCEL_ENV && process.env.VERCEL_ENV !== "production"
+    WAL_AIRDROP_PACKAGE: process.env.WAL_AIRDROP_PACKAGE,
+    CRON_SECRET: process.env.CRON_SECRET,
+    ADMIN_SECRET_KEY: process.env.ADMIN_SECRET,
+    TESTING_MODE: process.env.VERCEL_ENV && process.env.VERCEL_ENV !== "production"
 });
 
 export default serverConfig;

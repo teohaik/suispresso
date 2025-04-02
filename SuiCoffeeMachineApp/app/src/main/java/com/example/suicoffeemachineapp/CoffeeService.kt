@@ -26,16 +26,15 @@ class CoffeeService : IntentService("CoffeeService") {
         Log.d(TAG, "Making an espresso...")
         // Simulate making an espresso with a delay
         val intent = Intent(this, PaymentActivity::class.java)
-        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK) // Needed for starting an activity from a service
+        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+        intent.putExtra(COFFEE_TYPE_EXTRA, CoffeeType.ESPRESSO)
         startActivity(intent)
-        Thread.sleep(22000) // wait the end of the payment timeout + 2 seconds
-        Log.d(TAG, "Espresso is ready!")
     }
 
     private fun makeLungo() {
         Log.d(TAG, "Making a lungo...")
-        // Simulate making a lungo with a delay
-        Thread.sleep(3000)
-        Log.d(TAG, "Lungo is ready!")
+        val intent = Intent(this, PaymentActivity::class.java)
+        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+        intent.putExtra(COFFEE_TYPE_EXTRA, CoffeeType.LUNGO)
     }
 }

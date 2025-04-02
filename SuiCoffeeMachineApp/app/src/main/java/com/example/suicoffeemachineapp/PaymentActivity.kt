@@ -1,6 +1,8 @@
 package com.example.suicoffeemachineapp
 
+import android.Manifest
 import android.app.Activity
+import android.os.Build
 import android.os.Bundle
 import android.os.CountDownTimer
 import android.util.Log
@@ -16,6 +18,11 @@ import org.json.JSONObject
 import java.io.IOException
 import java.math.BigDecimal
 import android.widget.Toast
+import androidx.annotation.RequiresApi
+import androidx.annotation.RequiresPermission
+import com.example.suicoffeemachineapp.BluetoothFacade
+import okhttp3.Call
+import okhttp3.Response
 import org.json.JSONArray
 import org.json.JSONException
 
@@ -37,7 +44,10 @@ class PaymentActivity : Activity() {
     private val client = OkHttpClient()
     private var initialBalance: BigDecimal = BigDecimal.ZERO
 
+    private val COFFEE_TYPE_EXTRA = "coffee_type"
 
+
+    @RequiresApi(Build.VERSION_CODES.TIRAMISU)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_payment)
@@ -50,8 +60,9 @@ class PaymentActivity : Activity() {
         val bitmap = barcodeEncoder.encodeBitmap(QR_CODE_CONTENT, BarcodeFormat.QR_CODE, 400, 400)
         qrCodeImageView.setImageBitmap(bitmap)
 
-        // Get the initial balance before starting the timer
-        getInitialBalance()
+        val coffeeType  = intent.getSerializableExtra(COFFEE_TYPE_EXTRA, CoffeeType::class.java);
+
+        handlePayment(coffeeType!!)
     }
 
     override fun onDestroy() {
@@ -62,9 +73,8 @@ class PaymentActivity : Activity() {
 
 
 
-    private fun getInitialBalance() {
+    private fun handlePayment(coffeeType: CoffeeType) {
         val request = prepareRequest()
-
 
         // Make the API call asynchronously
         client.newCall(request).enqueue(object : okhttp3.Callback {
@@ -72,7 +82,7 @@ class PaymentActivity : Activity() {
                 Log.e(TAG, "API call failed", e)
                 // Handle failure (e.g., display an error message)
                 runOnUiThread{
-                    Toast.makeText(this@PaymentActivity, "API call failed", Toast.LENGTH_LONG).show()
+                    Toast.makeText(this@PaymentActivity, "Cannot check current Wallet Status to verify payment", Toast.LENGTH_LONG).show()
                 }
             }
 
@@ -93,7 +103,7 @@ class PaymentActivity : Activity() {
                                     findViewById<TextView>(R.id.timerTextView).text = "Time left: ${millisUntilFinished / 1000}s"
 
                                     // Check for payment on each tick
-                                    checkPaymentStatus()
+                                    checkPaymentStatus(coffeeType)
                                 }
 
                                 override fun onFinish() {
@@ -119,7 +129,7 @@ class PaymentActivity : Activity() {
     }
 
 
-    private fun checkPaymentStatus() {
+    private fun checkPaymentStatus(coffeeType: CoffeeType) {
         val request = prepareRequest()
 
         // Make the API call asynchronously
@@ -132,7 +142,8 @@ class PaymentActivity : Activity() {
                 }
             }
 
-            override fun onResponse(call: okhttp3.Call, response: okhttp3.Response) {
+            @RequiresPermission(Manifest.permission.BLUETOOTH_CONNECT)
+            override fun onResponse(call: Call, response: Response) {
                 val body = response.body?.string()
                 if (response.isSuccessful && body != null) {
                     // Process the successful response
@@ -145,6 +156,13 @@ class PaymentActivity : Activity() {
                             runOnUiThread {
                                 Toast.makeText(this@PaymentActivity, "Enjoy your coffee!", Toast.LENGTH_LONG).show()
                             }
+                            if(coffeeType == CoffeeType.ESPRESSO){
+                                BluetoothFacade.sendEspressoCommandToMachine()
+                            }
+                            else if(coffeeType == CoffeeType.LUNGO){
+                                BluetoothFacade.sendLungoCommandToMachine()
+                            }
+
                             finish()
                         }
                     } catch (e: JSONException) {

@@ -8,6 +8,8 @@ The coffee machine is expected to provide a bluetooth interface API to 2 command
 
 In our PoC we integrated a Nespresso Coffee Machine with an Arduino Device.
 
+![App Screenshot](app_screenshot.png)
+
 ## App Functionality
 
 1.  **Coffee Selection:** The app presents options to make an Espresso or a Lungo.
@@ -16,7 +18,7 @@ In our PoC we integrated a Nespresso Coffee Machine with an Arduino Device.
 4.  **Bluetooth Communication:** Once payment is confirmed, the app sends a command via Bluetooth to the coffee machine to start brewing the selected coffee.
 5.  **Timeout:** The payment screen has a timer. If payment isn't detected within a certain time, the app closes the payment screen.
 
-## Package Structure and Class Descriptions (`com.example.suicoffeemachineapp`)
+## Package Structure and Class Descriptions (`com.mystenlabs.suicoffeemachineapp`)
 
 *   **`MainActivity.kt`:**
     *   **Purpose:** The entry point of the application. Displays the main screen with buttons for selecting coffee types (Espresso and Lungo).
@@ -80,5 +82,3 @@ In our PoC we integrated a Nespresso Coffee Machine with an Arduino Device.
 *   **User Interface:** Enhance the user interface with better visuals and user feedback.
 *   **Error Handling:**  Improve error handling and user feedback for various failure scenarios (network issues, invalid payments, Bluetooth problems, etc.).
 *   **Settings:** Add settings for configuring parameters like the Sui fullnode URL, admin address, payment amount, and Bluetooth device address.
-*   **Security:** Consider security best practices, especially when handling sensitive information (though this example uses testnet).  Validate user input and handle potential errors securely.
-*   **Testing:**  Write unit and integration tests to ensure the app functions correctly.

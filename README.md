@@ -18,7 +18,8 @@ Suispresso is an Android application that allows users to interact with a smart 
 - **setup**: Contains testing scripts for the smart contract.
 - **SuiCoffeeMachineApp**: Contains the Suispresso Android app.
 
-
+## Project Architecture
+![System Architecture](suispresso_architecture.png)
 
 ## App Functionality
 

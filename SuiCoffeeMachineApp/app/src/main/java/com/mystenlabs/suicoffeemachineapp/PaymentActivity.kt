@@ -1,4 +1,4 @@
-package com.example.suicoffeemachineapp
+package com.mystenlabs.suicoffeemachineapp
 
 import android.Manifest
 import android.app.Activity
@@ -20,7 +20,6 @@ import java.math.BigDecimal
 import android.widget.Toast
 import androidx.annotation.RequiresApi
 import androidx.annotation.RequiresPermission
-import com.example.suicoffeemachineapp.BluetoothFacade
 import okhttp3.Call
 import okhttp3.Response
 import org.json.JSONArray
@@ -35,7 +34,7 @@ class PaymentActivity : Activity() {
         const val QR_CODE_CONTENT = ADMIN_ADDRESS
         const val SUI_COIN = "0x0000000000000000000000000000000000000000000000000000000000000002::sui::SUI"
 
-        const val PAYMENT_AMOUNT = 100000000
+        const val PAYMENT_AMOUNT = 100000000  //Payment = 0.1 SUI
 
         private const val TAG = "PaymentActivity"
     }
@@ -70,7 +69,6 @@ class PaymentActivity : Activity() {
         // Cancel timer if activity is destroyed
         timer.cancel()
     }
-
 
 
     private fun handlePayment(coffeeType: CoffeeType) {

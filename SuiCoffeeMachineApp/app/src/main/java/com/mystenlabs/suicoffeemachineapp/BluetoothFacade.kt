@@ -1,4 +1,4 @@
-package com.example.suicoffeemachineapp
+package com.mystenlabs.suicoffeemachineapp
 
 import android.Manifest
 import android.annotation.SuppressLint

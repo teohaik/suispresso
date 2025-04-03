@@ -5,11 +5,11 @@ plugins {
 }
 
 android {
-    namespace = "com.example.suicoffeemachineapp"
+    namespace = "com.mystenlabs.suicoffeemachineapp"
     compileSdk = 35
 
     defaultConfig {
-        applicationId = "com.example.suicoffeemachineapp"
+        applicationId = "com.mystenlabs.suicoffeemachineapp"
         minSdk = 24
         targetSdk = 35
         versionCode = 1
@@ -49,6 +49,7 @@ dependencies {
     implementation(libs.androidx.ui.graphics)
     implementation(libs.androidx.ui.tooling.preview)
     implementation(libs.androidx.material3)
+    implementation(libs.androidx.constraintlayout)
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)

@@ -1,4 +1,4 @@
-package com.example.suicoffeemachineapp
+package com.mystenlabs.suicoffeemachineapp
 
 import android.app.IntentService
 import android.content.Intent

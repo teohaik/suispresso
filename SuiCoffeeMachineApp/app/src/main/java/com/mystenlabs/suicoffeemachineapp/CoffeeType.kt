@@ -1,4 +1,4 @@
-package com.example.suicoffeemachineapp
+package com.mystenlabs.suicoffeemachineapp
 
 enum class CoffeeType {
     ESPRESSO,

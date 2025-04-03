@@ -13,6 +13,7 @@ Suispresso is an Android application that allows users to interact with a smart 
 ## Project Structure
 
 - **app**: Contains a Next.js backend API to offer helper services. Currently, it is not used.
+- **arduino**: Contains the Arduino code for the coffee machine. It handles the Bluetooth communication and brewing process.
 - **move**: Contains a smart contract for Coffee NFT per coffee portion.
 - **setup**: Contains testing scripts for the smart contract.
 - **SuiCoffeeMachineApp**: Contains the Suispresso Android app.

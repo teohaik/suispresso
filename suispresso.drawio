@@ -84,6 +84,18 @@
             </mxGeometry>
           </mxCell>
         </object>
+        <mxCell id="-Y_UwVZ5wxeoRw8Cj8nj-28" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;entryPerimeter=0;" edge="1" parent="1" source="-Y_UwVZ5wxeoRw8Cj8nj-16" target="-Y_UwVZ5wxeoRw8Cj8nj-3">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="-80" y="600" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="-Y_UwVZ5wxeoRw8Cj8nj-29" value="Submits Payment" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" vertex="1" connectable="0" parent="-Y_UwVZ5wxeoRw8Cj8nj-28">
+          <mxGeometry x="-0.6061" relative="1" as="geometry">
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
       </root>
     </mxGraphModel>
   </diagram>
